@@ -1,0 +1,6 @@
+this lab is created to fully verify the solver,
+as stated in prl, there are three stage: first,
+no advection u*\nabla u and friction coefficient
+Rf; then we switch advection of velocity on; 
+lastly we activate the friction by set non-zero
+friction coefficient Rf.

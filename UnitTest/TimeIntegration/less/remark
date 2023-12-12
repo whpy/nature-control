@@ -1,0 +1,6 @@
+we test two different things in this lab:
+
+1. the totally random initial condition, with w==0
+2. we lower the constants in linear terms that from 1 -> 0.995, we
+think that this would further suppress the value not to be bigger than 1.
+though in 1 case it has achieve a very good results.

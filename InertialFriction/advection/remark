@@ -1,0 +1,8 @@
+this lab, the initial state is from the beginning/ and beginning2/,
+where in beginning the field is run for 404 time units and 472 time units in 
+beginning2 (dt = 0.002 both). The number at the prefix indicates the number of 
+steps that have ran. 
+
+in this lab, we decided to add the advection effect on the flow field. by numerically 
+swithing on the advection term of vorticity w. Noted that we still need to keep the friction
+term constant Rf = 0.00.

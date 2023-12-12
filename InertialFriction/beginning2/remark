@@ -1,0 +1,5 @@
+this lab beginning2 is inherited from beginning, the lab is created to 
+generate the stationary form initial file. the end of also the beginning is
+T = 408(0.002*204000). as colin do, we set the beginning last for around 4000
+time units, actually the final aim is to make the total energy stable sufficiently
+to distinguish the variation after add the advection term and the Rf term.

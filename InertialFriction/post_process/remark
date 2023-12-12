@@ -1,0 +1,8 @@
+07/12/23
+
+wdata and wdata2 individually store some checkpoint state while beginning 
+regime. where no advection and friction Rf. wdata2 represents beginning2 inherited from the beginning, number at the prefix indicates the number of steps and dt both equals to 0.002.
+
+
+08/12/23
+the advection stores the checkpoint files that after adding the advection but no friction effect on vorticity field.`

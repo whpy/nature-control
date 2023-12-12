@@ -1,0 +1,4 @@
+in this lab, we verified that under a very smooth initial condition, solver could run for at
+least 40 time units (dt = 0.001). and the key representation S, the value would oscilliate no more
+than 1.03, and the number of points with value bigger than 1.02, would self suppress the 
+(no more than 4000, i.e. occupy the portion less than 1.6%).
