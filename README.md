@@ -2,7 +2,7 @@
 
 ## Intro
 In this repository, we preliminary reproduce the computation of *"Role of Advectiv Inertia in Active Nematic Turbulence"*(Colin-Marius Koch and Michael Wilczek
-Phys. Rev. Lett. 127, 268005 – Published 23 December 2021). The whole code is constructed under the header-only principle.
+Phys. Rev. Lett. 127, 268005). The whole code is constructed under the header-only principle.
 
 ## Configuration
 The code has been tested on the configurations below:
