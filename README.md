@@ -23,7 +23,7 @@ The code has been tested on the configurations below:
 |nvcc| V11.6.124 |
 |gcc| 8.4.1 |
 
-12.X
+12.X:
 |dependency | version|
 |---|---|
 |Linux| 4.18.0-305.25.1.el8_4.x86_64 |
