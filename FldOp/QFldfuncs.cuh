@@ -15,6 +15,33 @@ void coeff(Qreal *f, int Nx, int Ny, int BSZ){
     }
 }
 
+__global__
+ void symmetry_func(Qcomp f_spec[], int Nxh, int Ny, int BSZ)
+{
+	int i = blockIdx.x * BSZ + threadIdx.x;
+    int j = blockIdx.y * BSZ + threadIdx.y;
+    int index = j*Nxh + i;
+	
+	// We make sure that the transformed array keeps the necessary symmetry for
+	// RFT. (The 1st column should consist of pairs of complex conjugates.)
+	// the first column due to the zero value of wavenumver in x, the sequence
+	// degenerates to the trivial one-dimensional dft which need to fulfil symmetry
+	// here size equal to (Nx/2+1)*Ny where the size of wave numbers.
+	Qcomp mean_value{ 0.0, 0.0 };
+    if (i==0 && 0<j && j<Ny/2){
+        // printf("%d, %d \n",i,j);
+        int index2 = (Ny-j)*Nxh + i;
+        mean_value = 0.5 * (f_spec[index] + cuConj(f_spec[index2]));
+        f_spec[index] = mean_value;
+        f_spec[index2] = cuConj(mean_value);
+    }
+	// for( int y{(index+1)*Nxh}; y<(Ny/2*Nxh); y+=stride*Nxh )
+	// {
+	// 	mean_value = 0.5f * ( w_new_comp[y] + cuConjf(w_new_comp[size-y]) );
+	// 	w_new_comp[y] = mean_value;
+	// 	w_new_comp[size-y] = cuConjf(mean_value);
+	// }
+}
 inline void FwdTrans(Qcomp* ft, Qreal* f, Mesh* mesh){
     cudaMemcpy(mesh->phys, f, mesh->physsize, cudaMemcpyDeviceToDevice);
     cufft_error_func( cufftExecD2Z(mesh->transf, mesh->phys, ft));
@@ -22,6 +49,7 @@ inline void FwdTrans(Qcomp* ft, Qreal* f, Mesh* mesh){
 
 inline void BwdTrans( Qreal* f, Qcomp* ft, Mesh* mesh){
     cudaMemcpy(mesh->spec, ft, mesh->specsize, cudaMemcpyDeviceToDevice);
+    symmetry_func<<<mesh->dimGridsp,mesh->dimBlocksp>>>( ft, mesh->Nxh, mesh->Ny, mesh->BSZ);
     cufft_error_func( cufftExecZ2D(mesh->inv_transf, mesh->spec, f));
     coeff<<<mesh->dimGridp,mesh->dimBlockp>>>(f, mesh->Nx, mesh->Ny, mesh->BSZ);
 }
