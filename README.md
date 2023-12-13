@@ -51,7 +51,8 @@ Stores the test samles to verify the validation of basic field operations and th
 ### InertiaFriction
 The main laboratory to compute the simulation. Noted that `post_process/` stores some post process tools to calculate the total energy and the energy spectrum.
 
-## Notes
-There still exists large space to optimize the code. For example, we copy the data of physical and spectral data for twice while forwards and backwards operation; We allocate one thread for each point which might not be the best strategy; It is possible to allocate the wavenumber on the share memory to accelerate the speed.
+## To be updated
+1. we copy the data of physical and spectral data for twice while forwards and backwards operation; 
+2. We allocate one thread for each point which might not be the best strategy; It is possible to allocate the wavenumber on the share memory to accelerate the speed.
 
 
