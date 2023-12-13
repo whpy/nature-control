@@ -6,6 +6,7 @@ In this repository, we preliminary reproduce the computation of *"Role of Advect
 ## Configuration
 The code has been tested on the configurations below:
 
+10.X:
 |dependency | version|
 |---|---|
 |Ubuntu| 20.04.1 |
@@ -13,7 +14,7 @@ The code has been tested on the configurations below:
 |nvcc| V10.1.243 |
 |gcc| 9.4.0 |
 
-\\
+11.X:
 |dependency | version|
 |---|---|
 |Linux| 4.18.0-305.25.1.el8_4.x86_64 |
@@ -21,6 +22,13 @@ The code has been tested on the configurations below:
 |nvcc| V11.6.124 |
 |gcc| 8.4.1 |
 
+12.X
+|dependency | version|
+|---|---|
+|Linux| 4.18.0-305.25.1.el8_4.x86_64 |
+|Nvidia Driver| 535.104.05 |
+|nvcc| V12.0.140 |
+|gcc| 8.4.1 |
 
 ## Usage
 There is some existing `makefile` files in different existing directories. The arguments probably needed to be modified is the `$(CUDA_HOME)` and the `$(NVCC)` and the path to CUDA specific `include/` which contains the CUDA headers. It is not so easy to understand maybe so it would be modified to be more direct later. As it is header-only, so it is not so hard that compile the source code directly without makefile(that is how we do on public shared device). Please contact me(h_wu@u.nus.edu) if you come across problems.
