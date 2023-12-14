@@ -36,7 +36,7 @@ also
 |---|---|
 |Ubuntu(wsl)|  22.04.1 LTS|
 |Nvidia Driver| 537.13 |
-|nvcc| VV12.3.103 |
+|nvcc| V12.3.103 |
 |gcc| 11.3.0 |
 
 ## Usage
