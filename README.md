@@ -34,7 +34,7 @@ The code has been tested on the configurations below:
 also
 |dependency | version|
 |---|---|
-|Ubuntu(wsl)|  22.04.1 LTS|
+|Ubuntu(wsl2)|  22.04.1 LTS|
 |Nvidia Driver| 537.13 |
 |nvcc| V12.3.103 |
 |gcc| 11.3.0 |
