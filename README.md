@@ -31,6 +31,14 @@ The code has been tested on the configurations below:
 |nvcc| V12.0.140 |
 |gcc| 8.4.1 |
 
+also
+|dependency | version|
+|---|---|
+|Ubuntu(wsl)|  22.04.1 LTS|
+|Nvidia Driver| 537.13 |
+|nvcc| VV12.3.103 |
+|gcc| 11.3.0 |
+
 ## Usage
 There is some existing `makefile` files in different existing directories. The arguments probably needed to be modified is the `$(CUDA_HOME)` and the `$(NVCC)` and the path to CUDA specific `include/` which contains the CUDA headers. It is not so easy to understand maybe so it would be modified to be more direct later. As it is header-only, so it is not so hard that compile the source code directly without makefile(that is how we do on public shared device). Please contact me(h_wu@u.nus.edu) if you come across problems.
 
