@@ -122,6 +122,11 @@ typedef struct Field{
         cudaMalloc((void**)&phys, mesh->physsize);
     }
 
+    Field (Mesh* pmesh, Qreal* pphys):mesh(pmesh){
+        cudaMalloc((void**)&spec, mesh->specsize);
+        phys = pphys;
+    }
+
     ~Field(){
         cudaFree(spec);
         cudaFree(phys);
