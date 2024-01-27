@@ -1,5 +1,5 @@
 # flags and paths
-ROOT = ../..
+ROOT = ../../..
 INC = -I $(ROOT) -I /usr/local/cuda/include/
 SRC = $(ROOT)
 LIBRARIES := -lcufft

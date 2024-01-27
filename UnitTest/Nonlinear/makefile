@@ -2,7 +2,7 @@
 ROOT = ../../
 INC = -I $(ROOT) -I /usr/local/cuda/include/
 SRC = $(ROOT)
-CUDA_HOME = /usr
+CUDA_HOME = /usr/local/cuda
 LIBRARIES := -lcufft
 
 HOST_COMPILER := gcc

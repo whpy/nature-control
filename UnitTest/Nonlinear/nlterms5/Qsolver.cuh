@@ -8,13 +8,13 @@
 #include <chrono>
 #include <random>
 
-#include <cuComplexBinOp.cuh>
-#include <cudaErr.h>
-#include <QActFlowDef.cuh>
+#include <Basic/cuComplexBinOp.cuh>
+#include <Basic/cudaErr.h>
+#include <Basic/QActFlowDef.cuh>
 
-#include <Mesh.cuh>
-#include <Qfunctions.cuh>
-#include <QFldfuncs.cuh>
+#include <Basic/Mesh.cuh>
+#include <BasicUtils/BasicUtils.cuh>
+#include <FldOp/QFldfuncs.cuh>
 
 //////////////////////////////////////// linear ////////////////////////////////////////////////////
 __global__
