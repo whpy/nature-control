@@ -1,0 +1,3 @@
+usage:
+make velConv.cu
+./velConv $(vorticity_field)
