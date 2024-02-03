@@ -54,6 +54,13 @@ The project is originally constructed under conda environment. requirements.txt 
 ├── makefile
 ├── readme.md
 ├── requiements.txt
+├── test
+    ├── convert.py
+    ├── step2.py
+    ├── visual.m
+    ├── convert.py
+    ├── x.csv
+    └── y.csv
 ├── setup.py
 └── step2.py
 ```
@@ -92,7 +99,11 @@ after successful construction, the file structure would be as follow:
 ├── setup.py
 └── test
     ├── convert.py
-    └── step2.py
+    ├── step2.py
+    ├── visual.m
+    ├── convert.py
+    ├── x.csv
+    └── y.csv
 ```
 
 
