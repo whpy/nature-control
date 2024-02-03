@@ -11,5 +11,11 @@ reset:
 	python3 setup.py build
 	pip install .
 
+install:
+	python3 setup.py install
+
+user_install:
+	python3 setup.py install --user
+
 clean:
 	rm -r out.txt *.csv 
