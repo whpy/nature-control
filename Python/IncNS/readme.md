@@ -134,7 +134,7 @@ This class provide a interface to call the CUDA NS solver.
 ```Type: function```
 This function is used to convert the vorticity field $\omega$ to velocity fields $u$, $v$.
 
-#### VelConvert
+#### VortConvert
 ```Type: function```
 This function is used to convert the velocity fields $u$, $v$ to vorticity field $\omega$.
 
