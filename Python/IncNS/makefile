@@ -6,6 +6,7 @@ step_test:
 	
 convert_test:
 	python3 test/convert.py
+
 # clean the temporary files, rebuild the module and 
 # reinstall the new module.
 reset:
