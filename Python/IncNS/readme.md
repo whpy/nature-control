@@ -42,7 +42,6 @@ The project is originally constructed under conda environment. requirements.txt 
 1. After coloning the project, the file structure should be as follow:
 ```
 .
-├── convert.py
 ├── include
 │   ├── Qsolver.cuh
 │   └── timestep.h
