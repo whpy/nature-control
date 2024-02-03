@@ -1,9 +1,11 @@
 all:
 	python3 setup.py install>out.txt 
 
-test:
-	python3 nonl.py
-
+step_test:
+	python3 test/step2.py
+	
+convert_test:
+	python3 test/convert.py
 # clean the temporary files, rebuild the module and 
 # reinstall the new module.
 reset:
