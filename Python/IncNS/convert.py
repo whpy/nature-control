@@ -28,6 +28,15 @@ print(nsize)
 w = torch.rand(nsize,device="cuda:0")
 w = w.double()
 
+u = torch.rand(nsize,device="cuda:0")
+u = u.double()
+
+v = torch.rand(nsize,device="cuda:0")
+v = v.double()
+
+w0 = torch.rand(nsize,device="cuda:0")
+w0 = w0.double()
+
 # create the solver for NS equation
 sol = Incstep.IncSolver()
 
@@ -41,17 +50,13 @@ sol = Incstep.IncSolver()
 # w: torch.tensor to record the result at each step
 sol.init(Ip, 16, w)
 
-start = time.time()
-for i in range(150001):
-    sol.step()
-    if (i==0):
-        np.savetxt(str(i)+"w.csv",w.clone().reshape([Nx, Ny]).cpu().numpy().reshape([Nx,Ny]),fmt="%.6f",delimiter=",")
-    elif((i%1000 == 0) and (i!=0)):
-        np.savetxt(str(i)+"w.csv",w.clone().reshape([Nx, Ny]).cpu().numpy().reshape([Nx,Ny]),fmt="%.6f",delimiter=",")
-    else:
-        pass
-    print("=============={}=============".format(i))
+Incstep.VelConvert(u,v,w,Ip,16)
+print(u)
+np.savetxt(str(0)+"u.csv",u.clone().reshape([Nx, Ny]).cpu().numpy().reshape([Nx,Ny]),fmt="%.6f",delimiter=",")
+print(v)
+np.savetxt(str(0)+"v.csv",v.clone().reshape([Nx, Ny]).cpu().numpy().reshape([Nx,Ny]),fmt="%.6f",delimiter=",")
 
-end = time.time()
-
-print("time used: %f",format(end-start))
+Incstep.VortConvert(w0,u,v,Ip,16)
+print(w0)
+np.savetxt(str(0)+"w0.csv",w0.clone().reshape([Nx, Ny]).cpu().numpy().reshape([Nx,Ny]),fmt="%.6f",delimiter=",")
+print(w)

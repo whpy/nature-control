@@ -44,14 +44,14 @@ class IncSolver{
     void step(); // time step
     bool initstate(); // return the state of initialization
 
-    void VelConvert(Qreal* w, Qreal* u, Qreal* v); // Convert the received velocity field into vorticity field
-    void VortConvert(Qreal* u, Qreal* v, Qreal* w); // Convert the vorticity field into velocity field
-
     void log();
 
     private:
     bool initflag;
 };
+
+void VelConvert(torch::Tensor & ut, torch::Tensor & vt, torch::Tensor & wt, Incparam param, int BSZ); // Convert the received velocity field into vorticity field
+void VortConvert(torch::Tensor & wt, torch::Tensor & ut, torch::Tensor & vt, Incparam param, int BSZ); // Convert the vorticity field into velocity field
 
 class Qsolver
 {

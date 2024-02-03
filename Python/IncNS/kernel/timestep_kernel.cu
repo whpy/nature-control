@@ -208,6 +208,55 @@ bool IncSolver::initstate(){
     return this->initflag;
 }
 
+// utility funcs
+void VelConvert(torch::Tensor & ut, torch::Tensor & vt, torch::Tensor & wt, Incparam param, int BSZ){
+    Mesh *mesh = new Mesh(param.Nx, param.Ny, param.Lx, param.Ly, BSZ);
+    Field* w = new Field(mesh);
+    Field* u = new Field(mesh);
+    Field* v = new Field(mesh);
+
+    cudaMemcpy(w->phys, wt.data_ptr(), mesh->physsize, cudaMemcpyDeviceToDevice);
+    FwdTrans(w->spec, w->phys, mesh);
+
+    vel_func(w->spec, u->spec, v->spec, mesh);
+    BwdTrans(u->phys, u->spec, mesh);
+    BwdTrans(v->phys, v->spec, mesh);
+
+    cudaMemcpy(ut.data_ptr(), u->phys, mesh->physsize, cudaMemcpyDeviceToDevice);
+    cudaMemcpy(vt.data_ptr(), v->phys, mesh->physsize, cudaMemcpyDeviceToDevice);
+
+    delete w;
+    delete u;
+    delete v;
+    delete mesh;
+} 
+void VortConvert(torch::Tensor & wt, torch::Tensor & ut, torch::Tensor & vt,  Incparam param, int BSZ){
+    Mesh *mesh = new Mesh(param.Nx, param.Ny, param.Lx, param.Ly, BSZ);
+
+    Field* w = new Field(mesh);
+    Field* u = new Field(mesh);
+    Field* v = new Field(mesh);
+    Field* aux = new Field(mesh);
+
+    cudaMemcpy(u->phys, ut.data_ptr(), mesh->physsize, cudaMemcpyDeviceToDevice);
+    cudaMemcpy(v->phys, vt.data_ptr(), mesh->physsize, cudaMemcpyDeviceToDevice);
+    FwdTrans(u->spec, u->phys, mesh);
+    FwdTrans(v->spec, v->phys, mesh);
+
+    yDeriv(aux->spec, u->spec, mesh);
+    xDeriv(w->spec, v->spec, mesh);
+
+    SpecAdd<<<mesh->dimGridsp, mesh->dimBlocksp>>>(w->spec, -1.0, aux->spec, 1.0, w->spec, mesh->Nxh, mesh->Ny, mesh->BSZ);
+    BwdTrans(w->phys, w->spec, mesh);
+
+    cudaMemcpy(wt.data_ptr(), w->phys, mesh->physsize, cudaMemcpyDeviceToDevice);
+    delete w;
+    delete u;
+    delete v;
+    delete mesh;
+    delete aux;
+}
+
 // Qsolver definition:
 void Qsolver::init(param pParam, int pBSZ, Qreal* w, Qreal* r1, Qreal* r2){
     if (initflag){
