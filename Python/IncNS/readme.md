@@ -60,8 +60,7 @@ The project is originally constructed under conda environment. requirements.txt 
     ├── convert.py
     ├── x.csv
     └── y.csv
-├── setup.py
-└── step2.py
+└── setup.py
 ```
 run following command to construct the library ```Incstep```:
 ```(shell)
